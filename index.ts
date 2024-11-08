@@ -1,4 +1,10 @@
-let menu = [
+/**
+ * Challenge: Create a Pizza object type. It should include a `name`
+ * and a `price` property.
+ */
+type Pizza = {name: string, price: number}
+
+let menu: Pizza[] = [
     { name: "Margherita", price: 8 },
     { name: "Pepperoni", price: 10 },
     { name: "Hawaiian", price: 10 },
@@ -13,7 +19,7 @@ const orderQueue = []
  * Challenge: Add a utility function "addNewPizza" that takes a pizza object
  * and adds it to the menu.
  */
-function addNewPizza(pizzaObj) {
+function addNewPizza(pizzaObj: Pizza) {
     menu.push(pizzaObj)
 }
 
@@ -52,9 +58,9 @@ function completeOrder(orderId: number) {
     return order
 }
 
-addNewPizza({name: "Chicken Bacon Ranch", cost: 12})
-addNewPizza({name: "BBQ Chicken", cost: 12})
-addNewPizza({name: "Spicy Sausage", cost: 11})
+addNewPizza({name: "Chicken Bacon Ranch", price: 12})
+addNewPizza({name: "BBQ Chicken", price: 12})
+addNewPizza({name: "Spicy Sausage", price: 11})
 
 placeOrder("Chicken Bacon Ranch")
 completeOrder(1)

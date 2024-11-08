@@ -1,4 +1,3 @@
-
 let menu = [
     { name: "Margherita", price: 8 },
     { name: "Pepperoni", price: 10 },
@@ -26,7 +25,7 @@ function addNewPizza(pizzaObj) {
 *    (e.g. { pizza: selectedPizzaObjectFromStep1, status: "ordered" })
 * 4. returns the new order object (just in case we need it later)
 */
-function placeOrder(pizzaName) {
+function placeOrder(pizzaName: string) {
     const selectedPizza = menu.find(pizzaObj => pizzaObj.name === pizzaName)
     if (!selectedPizza) {
         console.log(`${selectedPizza} does not exist in the menu.`);
@@ -47,7 +46,7 @@ function placeOrder(pizzaName) {
  * You can use a global `nextOrderId` variable and increment it every time a new order is 
  * created to simulate real IDs being managed for us by a database.
  */
-function completeOrder(orderId) {
+function completeOrder(orderId: number) {
     const order = orderQueue.find(order => order.id === orderId)
     order.status = "completed"
     return order
@@ -58,7 +57,7 @@ addNewPizza({name: "BBQ Chicken", cost: 12})
 addNewPizza({name: "Spicy Sausage", cost: 11})
 
 placeOrder("Chicken Bacon Ranch")
-completeOrder("1")
+completeOrder(1)
 
 console.log("Menu", menu);
 console.log("Cash in register:", cashInRegister);

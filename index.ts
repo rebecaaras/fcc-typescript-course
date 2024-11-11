@@ -1,22 +1,23 @@
-type Pizza = {name: string, price: number}
+type Pizza = {id: number, name: string, price: number}
 
 type Order = { id: number
     pizza: Pizza
-    status: string}
+    status: "completed" | "cancelled" | "ordered" }
 
+let pizzaId:number = 1;
 const menu: Pizza[] = [
-    { name: "Margherita", price: 8 },
-    { name: "Pepperoni", price: 10 },
-    { name: "Hawaiian", price: 10 },
-    { name: "Veggie", price: 9 },
+    {id: pizzaId++, name: "Margherita", price: 8 },
+    {id: pizzaId++, name: "Pepperoni", price: 10 },
+    {id: pizzaId++, name: "Hawaiian", price: 10 },
+    {id: pizzaId++, name: "Veggie", price: 9 },
 ]
 
 let cashInRegister: number = 100
 let nextOrderId: number = 1
-const orderQueue: Order[] = []
+let orderQueue: Order[] = []
 
 function addNewPizza(pizzaObj: Pizza) {
-    menu.push(pizzaObj)
+    menu.push(pizzaObj) //se menu foi declarado como const porque eu consigo fazer push?
 }
 
 function placeOrder(pizzaName: string) {
@@ -54,9 +55,9 @@ function removeOrder(orderId: number) {
     return order
 }
 
-addNewPizza({name: "Chicken Bacon Ranch", price: 12})
-addNewPizza({name: "BBQ Chicken", price: 12})
-addNewPizza({name: "Spicy Sausage", price: 11})
+addNewPizza({id: pizzaId++, name: "Chicken Bacon Ranch", price: 12})
+addNewPizza({id: pizzaId++, name: "BBQ Chicken", price: 12})
+addNewPizza({id: pizzaId++, name: "Spicy Sausage", price: 11})
 
 placeOrder("Chicken Bacon Ranch")
 completeOrder(1)

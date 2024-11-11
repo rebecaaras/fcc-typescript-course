@@ -41,13 +41,30 @@ function completeOrder(orderId: number) {
     return order
 }
 
+function removeOrder(orderId: number) {
+    const order: Order = orderQueue.find(order => order.id === orderId)
+    if (!order) {
+        console.error(`${order} does not exist in the orderQueue.`);
+        return        
+    }
+    const orderIndex: number = orderQueue.findIndex(order => order.id === orderId)
+    orderQueue.splice(orderIndex, orderIndex)
+    cashInRegister -= order.pizza.price;
+    
+    return order
+}
+
 addNewPizza({name: "Chicken Bacon Ranch", price: 12})
 addNewPizza({name: "BBQ Chicken", price: 12})
 addNewPizza({name: "Spicy Sausage", price: 11})
 
 placeOrder("Chicken Bacon Ranch")
 completeOrder(1)
+placeOrder("Pepperoni")
 
 console.log("Menu", menu);
 console.log("Cash in register:", cashInRegister);
 console.log("Order queue", orderQueue);
+removeOrder(2)
+console.log("Order queue after removing 2:", orderQueue);
+console.log("Cash after removing 2:", cashInRegister);

@@ -10,10 +10,19 @@ let menu: Pizza[] = [
     { name: "Hawaiian", price: 10 },
     { name: "Veggie", price: 9 },
 ]
+/**
+ * Challenge: Add an Order type. It should have `id`, `pizza`, and `status` properties.
+ * Look through the code if you need a reminder as to what data types those should be.
+ */
+
+type Order = { id: number
+    pizza: Pizza
+    status: string}
+
 
 let cashInRegister = 100
 let nextOrderId = 1
-const orderQueue = []
+const orderQueue: Order[] = []
 
 /**
  * Challenge: Add a utility function "addNewPizza" that takes a pizza object
@@ -38,7 +47,7 @@ function placeOrder(pizzaName: string) {
         return        
     }
     cashInRegister += selectedPizza.price
-    const newOrder = { id: nextOrderId++, pizza: selectedPizza, status: "ordered" }
+    const newOrder: Order = { id: nextOrderId++, pizza: selectedPizza, status: "ordered" }
     orderQueue.push(newOrder)
     return newOrder
 }

@@ -16,11 +16,12 @@ let cashInRegister: number = 100
 let nextOrderId: number = 1
 let orderQueue: Order[] = []
 
-function addNewPizza(pizzaObj: Pizza) {
+function addNewPizza(pizzaObj: Pizza): void {
+    pizzaObj.id = pizzaId++
     menu.push(pizzaObj) //se menu foi declarado como const porque eu consigo fazer push?
 }
 
-function placeOrder(pizzaName: string) {
+function placeOrder(pizzaName: string): Order | undefined {
     const selectedPizza: Pizza = menu.find(pizzaObj => pizzaObj.name === pizzaName)
     if (!selectedPizza) {
         console.error(`${selectedPizza} does not exist in the menu.`);
@@ -32,7 +33,7 @@ function placeOrder(pizzaName: string) {
     return newOrder
 }
 
-function completeOrder(orderId: number) {
+function completeOrder(orderId: number): Order| undefined {
     const order: Order = orderQueue.find(order => order.id === orderId)
     if (!order) {
         console.error(`${order} does not exist in the orderQueue.`);
@@ -42,7 +43,7 @@ function completeOrder(orderId: number) {
     return order
 }
 
-function removeOrder(orderId: number) {
+function removeOrder(orderId: number): Order | undefined {
     const order: Order = orderQueue.find(order => order.id === orderId)
     if (!order) {
         console.error(`${order} does not exist in the orderQueue.`);
@@ -55,7 +56,7 @@ function removeOrder(orderId: number) {
     return order
 }
 
-export function getPizzaDetail(identifier: string | number){
+export function getPizzaDetail(identifier: string | number): Pizza | undefined {
     if (typeof identifier === "string"){
         return menu.find(pizza => pizza.name.toLowerCase() === identifier.toLowerCase())
     } else if (typeof identifier === "number"){
@@ -65,9 +66,9 @@ export function getPizzaDetail(identifier: string | number){
     }
 }
 
-addNewPizza({id: pizzaId++, name: "Chicken Bacon Ranch", price: 12})
-addNewPizza({id: pizzaId++, name: "BBQ Chicken", price: 12})
-addNewPizza({id: pizzaId++, name: "Spicy Sausage", price: 11})
+addNewPizza({name: "Chicken Bacon Ranch", price: 12})
+addNewPizza({name: "BBQ Chicken", price: 12})
+addNewPizza({name: "Spicy Sausage", price: 11})
 
 placeOrder("Chicken Bacon Ranch")
 completeOrder(1)

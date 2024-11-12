@@ -55,6 +55,16 @@ function removeOrder(orderId: number) {
     return order
 }
 
+export function getPizzaDetail(identifier: string | number){
+    if (typeof identifier === "string"){
+        return menu.find(pizza => pizza.name.toLowerCase() === identifier.toLowerCase())
+    } else if (typeof identifier === "number"){
+        return menu.find(pizza => pizza.id === identifier)
+    } else {
+        throw new TypeError ("Parameter identifier must me either a number or a string")
+    }
+}
+
 addNewPizza({id: pizzaId++, name: "Chicken Bacon Ranch", price: 12})
 addNewPizza({id: pizzaId++, name: "BBQ Chicken", price: 12})
 addNewPizza({id: pizzaId++, name: "Spicy Sausage", price: 11})
@@ -69,3 +79,4 @@ console.log("Order queue", orderQueue);
 removeOrder(2)
 console.log("Order queue after removing 2:", orderQueue);
 console.log("Cash after removing 2:", cashInRegister);
+console.log(getPizzaDetail("Pepperoni"))

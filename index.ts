@@ -16,9 +16,14 @@ let cashInRegister: number = 100
 let nextOrderId: number = 1
 let orderQueue: Order[] = []
 
-function addNewPizza(pizzaObj: Pizza): void {
-    pizzaObj.id = pizzaId++
-    menu.push(pizzaObj) //se menu foi declarado como const porque eu consigo fazer push?
+function addNewPizza(pizzaObj: Omit<Pizza, "id">): Pizza {
+    const pizza: Pizza = {
+        id: pizzaId++,
+        ...pizzaObj
+    }
+    menu.push(pizza) //se menu foi declarado como const porque eu consigo fazer push?
+
+    return pizza
 }
 
 function placeOrder(pizzaName: string): Order | undefined {
